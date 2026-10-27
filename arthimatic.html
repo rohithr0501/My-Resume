@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Calculator</title>
+</head>
+<body>
+    <h2>Calculator</h2>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    
+    <button onclick="add()">Add (+)</button>
+    <button onclick="sub()">Subtract (-)</button>
+    <button onclick="multi()">Multiply (*)</button>
+    <h3>Result: <span id="result">0</span></h3>
+
+    <script>
+        let count = 0;
+        // let a=5;
+        // let b=4;
+        function add() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+            document.getElementById("result").innerText = a + b;
+        }
+        function sub() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+
+            document.getElementById("result").innerText = a - b;
+        }
+        function multi() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+            document.getElementById("result").innerText = a * b;
+        }
+    </script>  
+</body>
+</html>
