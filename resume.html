@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith R - Resume</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a5f;
+            margin-bottom: 5px;
+        }
+
+        .info {
+            text-align: center;
+            margin: 5px 0;
+            overflow-wrap: anywhere;
+        }
+
+        a {
+            color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #1e3a5f;
+            border-bottom: 2px solid #1e3a5f;
+            padding-bottom: 5px;
+            margin-top: 28px;
+            font-size: 19px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px;
+        }
+
+        th, td {
+            border: 1px solid #d0d7de;
+            padding: 9px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1e3a5f;
+            color: white;
+        }
+
+        .item {
+            margin-bottom: 18px;
+        }
+
+        .item h3 {
+            color: #1e3a5f;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #294f7c;
+        }
+
+        #output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #d0d7de;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+
+            button, #output {
+                display: none;
+            }
+
+            a {
+                color: #1e3a5f;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PERSONAL INFORMATION -->
+
+    <div id="personalInfo"></div>
+
+    <!-- PROFESSIONAL SUMMARY -->
+
+    <h2>PROFESSIONAL SUMMARY</h2>
+
+    <p>
+        Motivated MCA student with an interest in software development
+        and web technologies. Familiar with Python, Java, HTML, CSS,
+        JavaScript, and SQL. Interested in developing practical
+        applications and continuously improving technical skills.
+    </p>
+
+    <!-- EDUCATION -->
+
+    <h2>EDUCATION</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Degree</th>
+                <th>Institution</th>
+                <th>Year</th>
+                <th>Marks / CGPA</th>
+            </tr>
+        </thead>
+        <tbody id="educationTable"></tbody>
+    </table>
+
+    <!-- TECHNICAL SKILLS -->
+
+    <h2>TECHNICAL SKILLS</h2>
+
+    <button onclick="showAllSkills()">Show All Skills</button>
+    <button onclick="filterSkills()">Programming Skills</button>
+    <button onclick="findSkill()">Find Java</button>
+    <button onclick="findSkillIndex()">Find Java Index</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Skill</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="skillsTable"></tbody>
+    </table>
+
+    <div id="output">Technical skills are displayed below.</div>
+
+    <!-- PROJECTS -->
+
+    <h2>PROJECTS</h2>
+
+    <div id="projectsList"></div>
+
+    <!-- CERTIFICATIONS -->
+
+    <h2>CERTIFICATIONS</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Certificate</th>
+                <th>Issued By</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="certificatesTable"></tbody>
+    </table>
+
+    <!-- LANGUAGES -->
+
+    <h2>LANGUAGES</h2>
+
+    <ul id="languagesList"></ul>
+
+    <!-- HOBBIES -->
+
+    <h2>HOBBIES</h2>
+
+    <ul id="hobbiesList"></ul>
+
+    <!-- DECLARATION -->
+
+    <h2>DECLARATION</h2>
+
+    <p>
+        I hereby declare that the information provided above is true
+        and correct to the best of my knowledge.
+    </p>
+
+    <script>
+
+        // 1. PERSONAL INFORMATION
+
+        const personalInfo = {
+            name: "Rohith R",
+            email: "rohithramesh558@gmail.com",
+            linkedin: "https://www.linkedin.com/in/rohith-r-7a0b1b1a2/",
+            github: "https://github.com/rohithr0501"
+        };
+
+        document.getElementById("personalInfo").innerHTML = `
+            <h1>${personalInfo.name}</h1>
+
+            <p class="info">
+                Email:
+                <a href="mailto:${personalInfo.email}">
+                    ${personalInfo.email}
+                </a>
+            </p>
+
+            <p class="info">
+                <a href="${personalInfo.linkedin}" target="_blank">
+                    LinkedIn
+                </a>
+                |
+                <a href="${personalInfo.github}" target="_blank">
+                    GitHub
+                </a>
+            </p>
+        `;
+
+
+        // 2. EDUCATION
+
+        const education = [
+            {
+                degree: "Master of Computer Applications",
+                college: "S.A. Engineering College",
+                year: "2025-2027",
+                marks: "CGPA: 8.00"
+            },
+            {
+                degree: "BSc Computer Science",
+                college: "C. Abdul Hakeem College",
+                year: "2022-2025",
+                marks: "70%"
+            },
+            {
+                degree: "12th Standard",
+                college: "Sree Narayana Guru School",
+                year: "2021-2022",
+                marks: "80.33%"
+            },
+            {
+                degree: "10th Standard",
+                college: "Sree Narayana Guru School",
+                year: "2019-2020",
+                marks: "71%"
+            }
+        ];
+
+        const educationRows = education.map((item, index) => {
+            return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.degree}</td>
+                    <td>${item.college}</td>
+                    <td>${item.year}</td>
+                    <td>${item.marks}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("educationTable").innerHTML =
+            educationRows.join("");
+
+
+        // 3. TECHNICAL SKILLS
+
+        const skills = [
+            { name: "Python", category: "Programming" },
+            { name: "Java", category: "Programming" },
+            { name: "C++", category: "Programming" },
+            { name: "HTML", category: "Frontend" },
+            { name: "CSS", category: "Frontend" },
+            { name: "JavaScript", category: "Frontend" },
+            { name: "Node.js", category: "Backend" },
+            { name: "MySQL", category: "Database" },
+            { name: "MongoDB", category: "Database" },
+            { name: "GitHub", category: "Tools" },
+            { name: "VS Code", category: "Tools" },
+            { name: "Postman", category: "Tools" }
+        ];
+
+        // MAP: Display skills
+
+        function displaySkills(list) {
+            const rows = list.map((skill, index) => {
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${skill.name}</td>
+                        <td>${skill.category}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("skillsTable").innerHTML =
+                rows.join("");
+        }
+
+        function showAllSkills() {
+            displaySkills(skills);
+
+            document.getElementById("output").innerText =
+                "All skills displayed.";
+        }
+
+        // FILTER: Programming skills
+
+        function filterSkills() {
+            const result = skills.filter(skill =>
+                skill.category === "Programming"
+            );
+
+            displaySkills(result);
+
+            document.getElementById("output").innerText =
+                "Programming skills displayed.";
+        }
+
+        // FIND: Search Java
+
+        function findSkill() {
+            const result = skills.find(skill =>
+                skill.name === "Java"
+            );
+
+            document.getElementById("output").innerText =
+                result
+                    ? "Skill found: " + result.name
+                    : "Java not found.";
+        }
+
+        // FINDINDEX: Find Java position
+
+        function findSkillIndex() {
+            const index = skills.findIndex(skill =>
+                skill.name === "Java"
+            );
+
+            document.getElementById("output").innerText =
+                index !== -1
+                    ? "Java index: " + index
+                    : "Java not found.";
+        }
+
+
+        // 4. PROJECTS
+
+        const projects = [
+            {
+                name: "Gym Management System",
+                technologies: "HTML, CSS, JavaScript, Python, MySQL",
+                description:
+                    "Developed an application to manage gym members and attendance.",
+                details:
+                    "Supports member records, trainer management, and payment tracking."
+            },
+            {
+                name: "College Canteen Pre-order and OTP System",
+                technologies: "HTML, CSS, JavaScript, Flask, MySQL",
+                description:
+                    "Developed a web application for college canteen food pre-orders.",
+                details:
+                    "Allows students to order food and collect their orders using OTP verification."
+            }
+        ];
+
+        const projectRows = projects.map((project, index) => {
+            return `
+                <div class="item">
+                    <h3>${index + 1}. ${project.name}</h3>
+
+                    <p>
+                        <strong>Technologies:</strong>
+                        ${project.technologies}
+                    </p>
+
+                    <p>${project.description}</p>
+                    <p>${project.details}</p>
+                </div>
+            `;
+        });
+
+        document.getElementById("projectsList").innerHTML =
+            projectRows.join("");
+        const certificates = [
+            {
+                name: "Zoho CRM Associate",
+                issuer: "Linz Technologies",
+                date: "09 September 2026"
+            },
+            {
+                name: "Getting Started with Artificial Intelligence",
+                issuer: "IBM SkillsBuild",
+                date: "28 July 2026"
+            },
+            {
+                name: "CodSoft Internship in Python Programming",
+                issuer: "CodSoft",
+                date: "15 August 2026"
+            },
+            {
+                name: "Cloud Computing and Distributed Systems",
+                issuer: "NPTEL",
+                date: "17 december 2025"
+            },
+            {
+                name: "One-day Workshop on Tableau",
+                issuer: "C. Abdul Hakeem engineering College",
+                date: "13 March 2025"
+            }
+        ];
+
+        const certificateRows = certificates.map((item, index) => {
+            return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.issuer}</td>
+                    <td>${item.date}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("certificatesTable").innerHTML =
+            certificateRows.join("");
+
+
+        // 6. LANGUAGES
+
+        const languages = ["Tamil", "English"];
+
+        document.getElementById("languagesList").innerHTML =
+            languages.map(language =>
+                `<li>${language}</li>`
+            ).join("");
+
+
+        // 7. HOBBIES
+
+        const hobbies = ["Playing Cricket"];
+
+        document.getElementById("hobbiesList").innerHTML =
+            hobbies.map(hobby =>
+                `<li>${hobby}</li>`
+            ).join("");
+
+
+        // INITIAL DISPLAY
+
+        showAllSkills();
+
+    </script>
+
+</body>
+
+</html>
+
